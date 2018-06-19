@@ -1,4 +1,5 @@
 var answerCorrect = false;
+var userClick = "";
 
 // VARIABLES WITH QUESTIONS AND BOOLEAN TO MAKE TRUE/FALSE
 var carQuestions = [ {
@@ -46,7 +47,7 @@ var carQuestions = [ {
         question: "What engine component allow leftover gasses escape the engine?",
         choices: {
             a: "Rotory Splint",
-            b: "exhaust",
+            b: "Exhaust",
             c: "Power steering pump",
             d: "Airconditioning compressor"
         }
@@ -116,21 +117,23 @@ var questionChoice = carQuestions.map(function(multChoice) {return multChoice.ch
     $(".text-c").html("<h4>" + questionChoice[j].c + "</h4>");
     $(".text-d").html("<h4>" + questionChoice[j].d + "</h4>");
 
-    $(".choice").on("click", function() {
-        if ("#choice-a.choice")  {
-            var userChoice = "a";
+// HERE WE GET THE BUTTON CLICK OF THE MULTIBLE CHOICES
+        // var buttonA = $("#choice-a");
+        // var buttonB =  $("#choice-b");
+        // var buttonC =  $("#choice-c");
+        // var buttonD =  $("#choice-d");
+
+        var userClickFunc = function(e) {
+            var userClick = e.currentTarget.id;
+            // console.log("Button click: " + e.currentTarget.id);
+            console.log("this is the userclick", userClick);
         }
-        if ("#choice-b.choice") {
-            var userChoice = "b";
-        }     
-        if ("#choice-c.choice") {
-            var userChoice = "c";
-        }
-        if ("#choice-d.choice") {
-            var userchoice = "d";
-        } 
-        console.log(userChoice);
-    });
+
+        var clickA = $("#choice-a").on('click', userClickFunc);
+        var clickB = $("#choice-b").on('click', userClickFunc);
+        var clickC = $("#choice-c").on('click', userClickFunc);
+        var clickD = $("#choice-d").on('click', userClickFunc);
+      
 
 // LOGIC
 // UPON MATCH OR NOT MATCH
@@ -138,17 +141,73 @@ var questionChoice = carQuestions.map(function(multChoice) {return multChoice.ch
 // DISPLAY COUNTER AT THE BOTTOM OF THE PAGE
 
 var carKey = {
-    keyOne: "fuel, oil, spark",
-    keyTwo: "Alternator",
-    keyThree: "Rotory",
-    keyFour: "",
-    keyFive: "",
-    keySix: "",
-    keySeven: "",
-    keyEight: "",
-    keyNine: "",
-    keyTen: ""
+    one: {
+        id: 1,
+        click: "choice-a",
+        value: "fuel, oil, spark"
+         },
+    two: {
+        id: 2,
+        click: "choice-b",
+        value: "Alternator"
+    },
+    three: {
+        id: 3,
+        click: "choice-d",
+        value: "Grand Prix"
+    },
+    four: {
+        id: 4,
+        click: "choice-c",
+        value: "Camshaft"
+    },
+    five: {
+        id: 5,
+        click: "choice-b",
+        value: "exhaust"
+    },
+    six: {
+        id: 6,
+        click: "choice-c",
+        value: "DOHC"
+    },
+    seven: {
+        id: 7,
+        click: "choice-d",
+        value: "Wiring harness"
+    }, 
+    eight: {
+        id: 8,
+        click: "choice-a",
+        value: "John DeLorean"
+    },
+    nine: {
+        id: 9,
+        click: "choice-b",
+        value: "350"
+    },
+    ten: {
+        id: 10,
+        click: "choice-d",
+        value: "6.2 SRT"
+    }
 }
+
+
+
+// CHECK FOR MATCH OR NON MATCH AND CHANGE BUTTON TO GREEN OR RED
+function compareAnswer() {
+    if (carQuestions.id == carKey.id) {
+        if (carKey.click == userClick) {
+            console.log("correct");
+        } else {
+            console.log("wrong");
+        }
+    }
+};
+
+
+
 
 carImgArr = [
     "https://s3-us-west-2.amazonaws.com/benji.to/img-fablabracing-00-engine-hoist.jpg",
