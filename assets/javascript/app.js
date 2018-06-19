@@ -1,4 +1,4 @@
-var answerCorrect = false;
+// var answerCorrect = false;
 var userClick = "";
 
 // VARIABLES WITH QUESTIONS AND BOOLEAN TO MAKE TRUE/FALSE
@@ -101,7 +101,7 @@ var carQuestions = [ {
             c: "454 Big Block",
             d: "6.2 SRT"
         }
-    } ];
+    } ]
   
 // GET ON CLICK EVENT AND MAP TO VARIALBLE
 // HERE WE ARE CREATING VARIABLE WITH THE CONTENT OF THE carQuestions obj
@@ -111,22 +111,18 @@ var questionChoice = carQuestions.map(function(multChoice) {return multChoice.ch
 
     var j = Math.floor(Math.random() * carQuestions.length);
 
+    $(".question-number").html("<h4>" + questionID[j] + "</h4>");
     $(".question-asked").html("<h4>" + questionDeclared[j] + "<h4>");
     $(".text-a").html("<h4>" + questionChoice[j].a + "</h4>");
     $(".text-b").html("<h4>" + questionChoice[j].b + "</h4>");
     $(".text-c").html("<h4>" + questionChoice[j].c + "</h4>");
     $(".text-d").html("<h4>" + questionChoice[j].d + "</h4>");
 
-// HERE WE GET THE BUTTON CLICK OF THE MULTIBLE CHOICES
-        // var buttonA = $("#choice-a");
-        // var buttonB =  $("#choice-b");
-        // var buttonC =  $("#choice-c");
-        // var buttonD =  $("#choice-d");
-
         var userClickFunc = function(e) {
             var userClick = e.currentTarget.id;
             // console.log("Button click: " + e.currentTarget.id);
             console.log("this is the userclick", userClick);
+            compareAnswer();
         }
 
         var clickA = $("#choice-a").on('click', userClickFunc);
@@ -140,74 +136,79 @@ var questionChoice = carQuestions.map(function(multChoice) {return multChoice.ch
 // SAVE SCORE "correctCounter" // "wrongCounter"
 // DISPLAY COUNTER AT THE BOTTOM OF THE PAGE
 
-var carKey = {
-    one: {
+var carKey = [{
         id: 1,
         click: "choice-a",
         value: "fuel, oil, spark"
          },
-    two: {
+        {
         id: 2,
         click: "choice-b",
         value: "Alternator"
-    },
-    three: {
+        },
+        {
         id: 3,
         click: "choice-d",
         value: "Grand Prix"
-    },
-    four: {
+        },
+        {
         id: 4,
         click: "choice-c",
         value: "Camshaft"
-    },
-    five: {
+        },
+        {
         id: 5,
         click: "choice-b",
         value: "exhaust"
-    },
-    six: {
+        },
+        {
         id: 6,
         click: "choice-c",
         value: "DOHC"
-    },
-    seven: {
+        },
+        {
         id: 7,
         click: "choice-d",
         value: "Wiring harness"
-    }, 
-    eight: {
+        }, 
+        {
         id: 8,
         click: "choice-a",
         value: "John DeLorean"
-    },
-    nine: {
+        },
+        {
         id: 9,
         click: "choice-b",
         value: "350"
-    },
-    ten: {
+        },
+        {
         id: 10,
         click: "choice-d",
         value: "6.2 SRT"
-    }
-}
-
-
+    } ]
+// Turn carKey.id into array that can be used in if statement
+var answerIdArr = carKey.map(function(answerID) {return answerID.id;});
+var answerClickArr = carKey.map(function(answerClick) {return answerClick.click});
 
 // CHECK FOR MATCH OR NON MATCH AND CHANGE BUTTON TO GREEN OR RED
 function compareAnswer() {
-    if (carQuestions.id == carKey.id) {
-        if (carKey.click == userClick) {
-            console.log("correct");
+    // We are using "j" // It was created for above for mapping varibles
+    if (questionID[j] == answerIdArr[j]) {
+
+        if (answerClickArr[j] == userClick) {
+            console.log("questionID[j]", questionID[j]);
+            console.log("answerIdArr[j]", answerIdArr[j]);
+            console.log("answerClickArr[j]", answerClickArr[j]);
+            console.log("userClick", userClick);
         } else {
-            console.log("wrong");
+            console.log("something went wrong");
+            console.log("questionID[j]", questionID[j]);
+            console.log("answerIdArr[j]", answerIdArr[j]);
+            console.log("answerClickArr[j]", answerClickArr[j]);
+            console.log("userClick", userClick);
         }
     }
 };
-
-
-
 
 carImgArr = [
     "https://s3-us-west-2.amazonaws.com/benji.to/img-fablabracing-00-engine-hoist.jpg",
