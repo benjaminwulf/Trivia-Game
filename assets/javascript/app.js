@@ -1,67 +1,136 @@
 var answerCorrect = false;
 
 // VARIABLES WITH QUESTIONS AND BOOLEAN TO MAKE TRUE/FALSE
-var carQuestions = {
-    qOne: {
-    question: "What are the three main ingredients to make a petrol engine run?",
-    choices: {
-        a: "fuel, oil, spark",
-        b: "cooliant, radiator fluid, water",
-        c: "fuel, air, water",
-        d: "fuel, air, spark"
+var carQuestions = [ {
+         id: 1,
+         question: "What are the three main ingredients to make a petrol engine run?",
+         choices: {
+            a: "Fuel, oil, spark",
+            b: "Cooliant, radiator fluid, water",
+            c: "Fuel, air, water",
+            d: "Fuel, air, spark"
         }
     },
-    qTwo: {
-
+    {
+        id: 2,
+        question: "What appendage to the engine charges the battery?",
+        choices: {
+            a: "Starter Motor",
+            b: "Alternator",
+            c: "Power steering pump",
+            d: "Airconditioning compressor"
+        }
     },
-    qThree: {
-
+    {
+        id: 3,
+        question: "What car is NOT manufactured by Ford Motor Company",
+        choices: {
+            a: "Mustang",
+            b: "Bronco",
+            c: "Edsel",
+            d: "Grand Prix"
+        }
     },
-    qFour: {
-
+    {
+         id: 4,
+         question: "Name the component of an engine that opens and closes the valves on the overhead valve engine?",
+         choices: {
+            a: "Exhause",
+            b: "Crankshaft",
+            c: "Camshaft",
+            d: "Piston"
+        }
     },
-    qFive: {
-
-    }, 
-    qSix: {
-
+    {
+        id: 5,
+        question: "What engine component allow leftover gasses escape the engine?",
+        choices: {
+            a: "Rotory Splint",
+            b: "exhaust",
+            c: "Power steering pump",
+            d: "Airconditioning compressor"
+        }
     },
-    qSeven: {
-
+    {
+        id: 6,
+        question: "Acronym given to engines that have dual camshafts located at top of engine",
+        choices: {
+            a: "SOCH",
+            b: "SOHC",
+            c: "DOHC",
+            d: "DODS"
+        }
     },
-    qEight: {
-
+    {
+         id: 7,
+         question: "Component that allows signals to travel from different sensors thoughout the engine to the computer",
+         choices: {
+            a: "Relays",
+            b: "Flux Capacity",
+            c: "Fuse box",
+            d: "Wiring harness"
+        }
     },
-    qNine: {
-
+    {
+        id: 8,
+        question: "This automotive leader was not involved in designing Chevrolet Vega but gained credit largely due to recently becoming General Manager of Chevrolet devision at GM?",
+        choices: {
+            a: "John DeLorean",
+            b: "Lee Iacocca",
+            c: "Henry Ford II",
+            d: "Batman"
+        }
     },
-    qTen: {
+    {
+        id: 9,
+        question: "what engine is not a Ford block?",
+        choices: {
+            a: "429 Shotgun",
+            b: "350",
+            c: "460 Big Block",
+            d: "2.3"
+        }
+    },
+    {
+        id: 10,
+        question: "What engine block is a Chevrolet engine?",
+        choices: {
+            a: "Hemi",
+            b: "V Wedge",
+            c: "454 Big Block",
+            d: "6.2 SRT"
+        }
+    } ];
+  
+// GET ON CLICK EVENT AND MAP TO VARIALBLE
+// HERE WE ARE CREATING VARIABLE WITH THE CONTENT OF THE carQuestions obj
+var questionID = carQuestions.map(function(questionNum) {return questionNum.id;});
+var questionDeclared = carQuestions.map(function(multChoice) {return multChoice.question;});
+var questionChoice = carQuestions.map(function(multChoice) {return multChoice.choices;});
 
-    }
-}
+    var j = Math.floor(Math.random() * carQuestions.length);
 
+    $(".question-asked").html("<h4>" + questionDeclared[j] + "<h4>");
+    $(".text-a").html("<h4>" + questionChoice[j].a + "</h4>");
+    $(".text-b").html("<h4>" + questionChoice[j].b + "</h4>");
+    $(".text-c").html("<h4>" + questionChoice[j].c + "</h4>");
+    $(".text-d").html("<h4>" + questionChoice[j].d + "</h4>");
 
-$(".question-asked").text(carQuestions.qOne.question);
-$(".text-a").html("<h4>" + carQuestions.qOne.choices.a + "</h4>");
-$(".text-b").html("<h4>" + carQuestions.qOne.choices.b + "</h4>");
-$(".text-c").html("<h4>" + carQuestions.qOne.choices.c) + "</h4>";
-$(".text-d").html("<h4>" + carQuestions.qOne.choices.d) + "</h4>";
-
-
-// CREATE OBJECT NAMED "carQuestions" // USE VARIABLE TO MAKE REUSABLE
-
-
-
-
-// CREATE 10 SUB OJECTS / PROPERTIES SUCH AS "one", "two", etc
-
-// CREATE PROPERTIES FOR EACH SUB OBJECT AS "A", "B", "C", "D"
-
-
-
-// HERE WE WILL CREATE A SECOND OBJECT CALLED "carKey"
-// IT WILL HAVE PROPERTIES OF THE SUB OBJECT THAT CAN BE MATCHED
-
+    $(".choice").on("click", function() {
+        if ("#choice-a.choice")  {
+            var userChoice = "a";
+        }
+        if ("#choice-b.choice") {
+            var userChoice = "b";
+        }     
+        if ("#choice-c.choice") {
+            var userChoice = "c";
+        }
+        if ("#choice-d.choice") {
+            var userchoice = "d";
+        } 
+        console.log(userChoice);
+    });
 
 // LOGIC
 // UPON MATCH OR NOT MATCH
@@ -69,16 +138,16 @@ $(".text-d").html("<h4>" + carQuestions.qOne.choices.d) + "</h4>";
 // DISPLAY COUNTER AT THE BOTTOM OF THE PAGE
 
 var carKey = {
-    qOne: "fuel, oil, spark",
-    qTwo: "",
-    qThree: "",
-    qFour: "",
-    qFive: "",
-    qSix: "",
-    qSeven: "",
-    qEight: "",
-    qNine: "",
-    qTen: ""
+    keyOne: "fuel, oil, spark",
+    keyTwo: "Alternator",
+    keyThree: "Rotory",
+    keyFour: "",
+    keyFive: "",
+    keySix: "",
+    keySeven: "",
+    keyEight: "",
+    keyNine: "",
+    keyTen: ""
 }
 
 carImgArr = [
@@ -104,4 +173,4 @@ carImgArr = [
     "https://s3-us-west-2.amazonaws.com/benji.to/img-fablabracing-19-rear-seat-delete.jpg"
 ]
 
-$("#random-img").html('<img src="' + carImgArr[Math.floor(Math.random() * (carImgArr.length))] + '"width="400px" ">');
+$("#random-img").html('<img src="' + carImgArr[Math.floor(Math.random() * (carImgArr.length))] + '"width="360px" ">');
