@@ -1,5 +1,14 @@
 // var answerCorrect = false;
 var userClick = "";
+var clicked = false;
+var userClickA = false;
+var userClickB = false;
+var userClickC = false;
+var userClickD = false;
+
+
+// INITIATE GAME RESET
+// $(".choice").on('click', compareAnswer);
 
 // VARIABLES WITH QUESTIONS AND BOOLEAN TO MAKE TRUE/FALSE
 var carQuestions = [ {
@@ -118,18 +127,10 @@ var questionChoice = carQuestions.map(function(multChoice) {return multChoice.ch
     $(".text-c").html("<h4>" + questionChoice[j].c + "</h4>");
     $(".text-d").html("<h4>" + questionChoice[j].d + "</h4>");
 
-        var userClickFunc = function(e) {
-            var userClick = e.currentTarget.id;
-            // console.log("Button click: " + e.currentTarget.id);
-            console.log("this is the userclick", userClick);
-            compareAnswer();
-        }
-
-        var clickA = $("#choice-a").on('click', userClickFunc);
-        var clickB = $("#choice-b").on('click', userClickFunc);
-        var clickC = $("#choice-c").on('click', userClickFunc);
-        var clickD = $("#choice-d").on('click', userClickFunc);
-      
+    // var clickA = $("#choice-a").on('click', userClick);
+    // var clickB = $("#choice-b").on('click', userClick);
+    // var clickC = $("#choice-c").on('click', userClick);
+    // var clickD = $("#choice-d").on('click', userClick);
 
 // LOGIC
 // UPON MATCH OR NOT MATCH
@@ -138,76 +139,76 @@ var questionChoice = carQuestions.map(function(multChoice) {return multChoice.ch
 
 var carKey = [{
         id: 1,
-        click: "choice-a",
+        answer: "choice-a",
         value: "fuel, oil, spark"
          },
         {
         id: 2,
-        click: "choice-b",
+        answer: "choice-b",
         value: "Alternator"
         },
         {
         id: 3,
-        click: "choice-d",
+        answer: "choice-d",
         value: "Grand Prix"
         },
         {
         id: 4,
-        click: "choice-c",
+        answer: "choice-c",
         value: "Camshaft"
         },
         {
         id: 5,
-        click: "choice-b",
+        answer: "choice-b",
         value: "exhaust"
         },
         {
         id: 6,
-        click: "choice-c",
+        answer: "choice-c",
         value: "DOHC"
         },
         {
         id: 7,
-        click: "choice-d",
+        answer: "choice-d",
         value: "Wiring harness"
         }, 
         {
         id: 8,
-        click: "choice-a",
+        answer: "choice-a",
         value: "John DeLorean"
         },
         {
         id: 9,
-        click: "choice-b",
+        answer: "choice-b",
         value: "350"
         },
         {
         id: 10,
-        click: "choice-d",
-        value: "6.2 SRT"
+        answer: "choice-c",
+        value: "454 Big Block"
     } ]
 // Turn carKey.id into array that can be used in if statement
-var answerIdArr = carKey.map(function(answerID) {return answerID.id;});
-var answerClickArr = carKey.map(function(answerClick) {return answerClick.click});
+var keyIdArr = carKey.map(function(answerID) {return answerID.id;});
+var keyAnswerArr = carKey.map(function(answerClick) {return answerClick.answer;});
 
 // CHECK FOR MATCH OR NON MATCH AND CHANGE BUTTON TO GREEN OR RED
 function compareAnswer() {
     // We are using "j" // It was created for above for mapping varibles
-    if (questionID[j] == answerIdArr[j]) {
+    if (questionID[j] == keyIdArr[j]) {
 
-        if (answerClickArr[j] == userClick) {
-            console.log("questionID[j]", questionID[j]);
-            console.log("answerIdArr[j]", answerIdArr[j]);
-            console.log("answerClickArr[j]", answerClickArr[j]);
-            console.log("userClick", userClick);
+        if (keyAnswerArr[j] == userClick) {
+            console.log("question id", questionID[j]);
+            console.log("key id", keyIdArr[j]);
+            console.log("answer", keyAnswerArr[j]);
+            console.log("user", userClick);
         } else {
             console.log("something went wrong");
             console.log("questionID[j]", questionID[j]);
-            console.log("answerIdArr[j]", answerIdArr[j]);
-            console.log("answerClickArr[j]", answerClickArr[j]);
+            console.log("answerIdArr[j]", keyIdArr[j]);
+            console.log("answerClickArr[j]", keyAnswerArr[j]);
             console.log("userClick", userClick);
-        }
-    }
+            }
+        } 
 };
 
 carImgArr = [
@@ -234,3 +235,33 @@ carImgArr = [
 ]
 
 $("#random-img").html('<img src="' + carImgArr[Math.floor(Math.random() * (carImgArr.length))] + '"width="360px" ">');
+
+
+// Set boolean of clicked based on choice id
+$("#choice-a").on('click', function() {
+    clicked = true;
+    userClickA = true;
+    userClick = "choice-a";
+    compareAnswer();
+});
+
+$("#choice-b").on('click', function() {
+    clicked = true;
+    userClickB = true;
+    userClick = "choice-b";
+    compareAnswer();
+});
+
+$("#choice-c").on('click', function() {
+    clicked = true;
+    userClickC = true;
+    userClick = "choice-c";
+    compareAnswer();
+});
+
+$("#choice-d").on('click', function() {
+    clicked = true;
+    userClickD = true;
+    userClick = "choice-d";
+    compareAnswer();
+});
