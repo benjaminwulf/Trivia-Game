@@ -1,3 +1,5 @@
-#questionBox {
-    background-image: url("#000000")
-}
+.choice:hover, .choice:active, .choice:focus {
+    color: #ffffff !important;
+    background-color: khaki !important;
+    border-color: #494F57 !important;
+  }

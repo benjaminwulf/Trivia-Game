@@ -1,14 +1,58 @@
 // var answerCorrect = false;
+var count = 0;
+var correctCount = 0;
+var wrongCount = 0;
 var userClick = "";
 var clicked = false;
 var userClickA = false;
 var userClickB = false;
 var userClickC = false;
 var userClickD = false;
+//INITIAL SETUP
+
 
 
 // INITIATE GAME RESET
-// $(".choice").on('click', compareAnswer);
+function gameReset() {
+count = 0;
+correctCount = 0;
+wrongCount = 0;
+userClick = "";
+clicked = false;
+userClickA = false;
+userClickB = false;
+userClickC = false;
+userClickD = false;
+questionID;
+questionDeclared;
+questionChoice;
+j;
+};
+
+// THIS FUNCTION CHANGES THE QUESTION AND ANSWER KEY IMMEDIATELY FOLLOWING LAST QUESTION SELECTION
+$("#next-play").on('click', function() {
+    userClick = "";
+    clicked = false;
+    userClickA = false;
+    userClickB = false;
+    userClickC = false;
+    userClickD = false;
+    questionID;
+    questionDeclared;
+    questionChoice;
+    j = Math.floor(Math.random() * carQuestions.length);
+
+    $("#random-img").html('<img src="' + carImgArr[Math.floor(Math.random() * (carImgArr.length))] + '"width="360px" ">');
+
+
+    $(".question-number").html("<h4>" + questionID[j] + "</h4>");
+    $(".question-asked").html("<h4>" + questionDeclared[j] + "<h4>");
+    $(".text-a").html("<h4>" + questionChoice[j].a + "</h4>");
+    $(".text-b").html("<h4>" + questionChoice[j].b + "</h4>");
+    $(".text-c").html("<h4>" + questionChoice[j].c + "</h4>");
+    $(".text-d").html("<h4>" + questionChoice[j].d + "</h4>");
+});
+
 
 // VARIABLES WITH QUESTIONS AND BOOLEAN TO MAKE TRUE/FALSE
 var carQuestions = [ {
@@ -114,11 +158,11 @@ var carQuestions = [ {
   
 // GET ON CLICK EVENT AND MAP TO VARIALBLE
 // HERE WE ARE CREATING VARIABLE WITH THE CONTENT OF THE carQuestions obj
+
 var questionID = carQuestions.map(function(questionNum) {return questionNum.id;});
 var questionDeclared = carQuestions.map(function(multChoice) {return multChoice.question;});
 var questionChoice = carQuestions.map(function(multChoice) {return multChoice.choices;});
-
-    var j = Math.floor(Math.random() * carQuestions.length);
+var j = Math.floor(Math.random() * carQuestions.length);
 
     $(".question-number").html("<h4>" + questionID[j] + "</h4>");
     $(".question-asked").html("<h4>" + questionDeclared[j] + "<h4>");
@@ -127,10 +171,6 @@ var questionChoice = carQuestions.map(function(multChoice) {return multChoice.ch
     $(".text-c").html("<h4>" + questionChoice[j].c + "</h4>");
     $(".text-d").html("<h4>" + questionChoice[j].d + "</h4>");
 
-    // var clickA = $("#choice-a").on('click', userClick);
-    // var clickB = $("#choice-b").on('click', userClick);
-    // var clickC = $("#choice-c").on('click', userClick);
-    // var clickD = $("#choice-d").on('click', userClick);
 
 // LOGIC
 // UPON MATCH OR NOT MATCH
@@ -197,11 +237,30 @@ function compareAnswer() {
     if (questionID[j] == keyIdArr[j]) {
 
         if (keyAnswerArr[j] == userClick) {
+            count++;
+            correctCount++;
+            if (count > 6) {
+                gameReset();
+            } else {
+
+            }
+            console.log("Total count", count);
+            console.log("Correct count", correctCount);
+            console.log("Wrong count", wrongCount);
             console.log("question id", questionID[j]);
             console.log("key id", keyIdArr[j]);
             console.log("answer", keyAnswerArr[j]);
             console.log("user", userClick);
         } else {
+            count++;
+            wrongCount++;
+            if (count > 6) {
+                gameReset();
+            } else {
+
+            console.log("Total count", count);
+            console.log("Correct count", correctCount);
+            console.log("Wrong count", wrongCount);
             console.log("something went wrong");
             console.log("questionID[j]", questionID[j]);
             console.log("answerIdArr[j]", keyIdArr[j]);
@@ -209,6 +268,7 @@ function compareAnswer() {
             console.log("userClick", userClick);
             }
         } 
+    }
 };
 
 carImgArr = [
@@ -265,3 +325,5 @@ $("#choice-d").on('click', function() {
     userClick = "choice-d";
     compareAnswer();
 });
+
+
