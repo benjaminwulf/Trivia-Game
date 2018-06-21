@@ -8,7 +8,7 @@ var userClickA = false;
 var userClickB = false;
 var userClickC = false;
 var userClickD = false;
-//INITIAL SETUP
+run();
 
 
 
@@ -27,6 +27,7 @@ questionID;
 questionDeclared;
 questionChoice;
 j;
+run();
 };
 
 // THIS FUNCTION CHANGES THE QUESTION AND ANSWER KEY IMMEDIATELY FOLLOWING LAST QUESTION SELECTION
@@ -58,6 +59,44 @@ $("#next-play").on('click', function() {
     $(".text-d").html("<h4>" + questionChoice[j].d + "</h4>");
     }
 });
+
+// TIMER
+    var number = 60;
+
+    var intervalId;
+
+    //  The run function sets an interval
+    //  that runs the decrement function once a second.
+    function run() {
+      clearInterval(intervalId);
+      intervalId = setInterval(decrement, 1000);
+    }
+
+    //  The decrement function.
+    function decrement() {
+
+      //  Decrease number by one.
+      number--;
+
+      //  Show the number in the #show-number tag.
+      $("#timer").html("<h2>" + number + "</h2>");
+
+
+      //  Once number hits zero...
+      if (number === 0) {
+        stop();
+        
+        function stop() {
+
+            //  Clears our intervalId
+            clearInterval(intervalId);
+          }
+        //  Alert the user that time is up.
+        $("#timer").html('<h1>' + "Time Up!" + '</h1>');
+      
+     
+    }
+    }
 
 
 // VARIABLES WITH QUESTIONS AND BOOLEAN TO MAKE TRUE/FALSE
