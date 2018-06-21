@@ -31,6 +31,11 @@ j;
 
 // THIS FUNCTION CHANGES THE QUESTION AND ANSWER KEY IMMEDIATELY FOLLOWING LAST QUESTION SELECTION
 $("#next-play").on('click', function() {
+    if (count === 6) {
+        $("#question-box").html('<h1>' + 'Score: ' + correctCount 
+        + ' out of ' + count +'<h1>')
+        
+    } else {
     userClick = "";
     clicked = false;
     userClickA = false;
@@ -51,6 +56,7 @@ $("#next-play").on('click', function() {
     $(".text-b").html("<h4>" + questionChoice[j].b + "</h4>");
     $(".text-c").html("<h4>" + questionChoice[j].c + "</h4>");
     $(".text-d").html("<h4>" + questionChoice[j].d + "</h4>");
+    }
 });
 
 
