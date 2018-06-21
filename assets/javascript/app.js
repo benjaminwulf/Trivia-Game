@@ -10,7 +10,7 @@ var userClickC = false;
 var userClickD = false;
 run();
 
-
+$("#game-reset").on('click', gameReset());
 
 // INITIATE GAME RESET
 function gameReset() {
@@ -26,7 +26,7 @@ userClickD = false;
 questionID;
 questionDeclared;
 questionChoice;
-j;
+
 run();
 };
 
@@ -51,7 +51,7 @@ $("#next-play").on('click', function() {
     $("#random-img").html('<img src="' + carImgArr[Math.floor(Math.random() * (carImgArr.length))] + '"width="360px" ">');
 
 
-    $(".question-number").html("<h4>" + questionID[j] + "</h4>");
+    // $(".question-number").html("<h4>" + questionID[j] + "</h4>");
     $(".question-asked").html("<h4>" + questionDeclared[j] + "<h4>");
     $(".text-a").html("<h4>" + questionChoice[j].a + "</h4>");
     $(".text-b").html("<h4>" + questionChoice[j].b + "</h4>");
@@ -92,8 +92,9 @@ $("#next-play").on('click', function() {
             clearInterval(intervalId);
           }
         //  Alert the user that time is up.
-        $("#timer").html('<h1>' + "Time Up!" + '</h1>');
-      
+        $("#timer").html('<h1>' + "Time Up!" + '</h1>' +
+        '<h1>' + 'Score: ' + correctCount 
+        + ' out of ' + count +'<h1>')
      
     }
     }
@@ -209,7 +210,7 @@ var questionDeclared = carQuestions.map(function(multChoice) {return multChoice.
 var questionChoice = carQuestions.map(function(multChoice) {return multChoice.choices;});
 var j = Math.floor(Math.random() * carQuestions.length);
 
-    $(".question-number").html("<h4>" + questionID[j] + "</h4>");
+    // $(".question-number").html("<h4>" + questionID[j] + "</h4>");
     $(".question-asked").html("<h4>" + questionDeclared[j] + "<h4>");
     $(".text-a").html("<h4>" + questionChoice[j].a + "</h4>");
     $(".text-b").html("<h4>" + questionChoice[j].b + "</h4>");
